@@ -41,7 +41,7 @@ func Middleware(opts ...Option) echo.MiddlewareFunc {
 
 			span, ctx := StartRequestSpan(request, opts...)
 			defer func() {
-				FinishRequestSpan(span, c.Response().Status, finishOpts...)
+				span.Finish(finishOpts...)
 			}()
 
 			c.SetRequest(request.WithContext(ctx))

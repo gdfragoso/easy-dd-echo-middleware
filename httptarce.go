@@ -28,7 +28,7 @@ func StartRequestSpan(r *http.Request, opts ...ddtrace.StartSpanOption) (tracer.
 		opts = append(opts, tracer.ChildOf(spanctx))
 	}
 
-	return tracer.StartSpanFromContext(r.Context(), "", opts...)
+	return tracer.StartSpanFromContext(r.Context(), "http.request", opts...)
 }
 
 func FinishRequestSpan(s tracer.Span, status int, opts ...tracer.FinishOption) {
